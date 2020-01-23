@@ -44,7 +44,7 @@
                         <th><%= cli.getCorreo()%></th>
                         <th>
                             <a href="controlador?accion=editar&id=<%= cli.getId()%>">Editar</a>
-                            <a>Eliminar</a>
+                            <a href="controlador?accion=eliminar&id=<%= cli.getId()%>">Eliminar</a>
                         </th>
                     </tr>
                     <%}%>

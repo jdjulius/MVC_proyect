@@ -52,7 +52,7 @@ public class ClienteDAO implements crud {
 
     @Override
     public Cliente list(int id) {
-        String sql = "Select * from cliente where id=" +id;
+        String sql = "Select * from cliente where id=" + id;
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -100,7 +100,17 @@ public class ClienteDAO implements crud {
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "DELETE FROM cliente WHERE id = " + id + ";";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+        return false;
+
     }
 
 }

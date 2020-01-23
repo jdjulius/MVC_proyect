@@ -29,6 +29,7 @@ public class controlador extends HttpServlet {
     ClienteDAO dao = new ClienteDAO();
 
     int id;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -98,6 +99,12 @@ public class controlador extends HttpServlet {
             dao.edit(c);
 
             acceso = listar;
+
+        } else if (accion.equalsIgnoreCase("eliminar")) {
+            id = Integer.parseInt(request.getParameter("id"));
+            dao.eliminar(id);
+            acceso = listar;
+            
 
         }
 
