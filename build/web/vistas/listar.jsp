@@ -29,24 +29,27 @@
                     </tr>
                 </thead>
                 <%
-                    ClienteDAO dao= new ClienteDAO();
+                    ClienteDAO dao = new ClienteDAO();
                     List<Cliente> list = dao.listar();
                     Iterator<Cliente> inter = list.iterator();
                     Cliente cli = null;
-                    while (inter.hasNext()){
+                    while (inter.hasNext()) {
                         cli = inter.next();
-                    
+
                 %>
                 <tbody>
                     <tr>
-                        <th><%= cli.getId() %></th>
-                        <th><%= cli.getNombre() %></th>
-                        <th><%= cli.getCorreo() %></th>
-                        <th><a>Editar</a><a>Eliminar</a></th>
+                        <th><%= cli.getId()%></th>
+                        <th><%= cli.getNombre()%></th>
+                        <th><%= cli.getCorreo()%></th>
+                        <th>
+                            <a href="controlador?accion=editar&id=<%= cli.getId()%>">Editar</a>
+                            <a>Eliminar</a>
+                        </th>
                     </tr>
                     <%}%>
                 </tbody>
-                
+
             </table>
 
         </div>

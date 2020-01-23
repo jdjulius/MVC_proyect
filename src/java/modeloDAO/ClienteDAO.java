@@ -35,13 +35,13 @@ public class ClienteDAO implements crud {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Cliente cc = new Cliente();
                 cc.setId(rs.getInt("id"));
                 cc.setNombre(rs.getString("nombre"));
                 cc.setCorreo(rs.getString("correo"));
                 list.add(cc);
-                
+
             }
         } catch (Exception e) {
 
@@ -52,17 +52,31 @@ public class ClienteDAO implements crud {
 
     @Override
     public Cliente list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "Select * from cliente where id=" +id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                c.setId(rs.getInt("id"));
+                c.setNombre(rs.getString("nombre"));
+                c.setCorreo(rs.getString("correo"));
+
+            }
+        } catch (Exception e) {
+
+        }
+        return c;
     }
 
     @Override
     public boolean add(Cliente c) {
         String sql = "INSERT INTO cliente(nombre, correo) values ('" + c.getNombre() + "','" + c.getCorreo() + "');";
-         try {
+        try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            
+
         } catch (Exception e) {
 
         }
@@ -71,7 +85,17 @@ public class ClienteDAO implements crud {
 
     @Override
     public boolean edit(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE cliente SET nombre = '" + c.getNombre() + "', correo='" + c.getCorreo() + "' WHERE id = " + c.getId() + ";";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+        return false;
+
     }
 
     @Override

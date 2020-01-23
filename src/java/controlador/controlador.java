@@ -24,10 +24,11 @@ public class controlador extends HttpServlet {
     String listar = "vistas/listar.jsp";
     String add = "vistas/add.jsp";
     String edit = "vistas/edit.jsp";
-    
+
     Cliente c = new Cliente();
     ClienteDAO dao = new ClienteDAO();
-    
+
+    int id;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,7 +46,7 @@ public class controlador extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet controlador</title>");            
+            out.println("<title>Servlet controlador</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet controlador at " + request.getContextPath() + "</h1>");
@@ -69,23 +70,37 @@ public class controlador extends HttpServlet {
         //processRequest(request, response);
         String acceso = "";
         String accion = request.getParameter("accion");
-        
+
         if (accion.equalsIgnoreCase("listar")) {
             acceso = listar;
-            
-        }
-        else if (accion.equalsIgnoreCase("add")) {
+
+        } else if (accion.equalsIgnoreCase("add")) {
             acceso = add;
-        }
-        else if (accion.equalsIgnoreCase("Agregar")) {
+        } else if (accion.equalsIgnoreCase("Agregar")) {
             String nombre = request.getParameter("nombre");
             String correo = request.getParameter("correo");
             c.setNombre(nombre);
             c.setCorreo(correo);
             dao.add(c);
-                    
+
             acceso = listar;
+        } else if (accion.equalsIgnoreCase("editar")) {
+
+            request.setAttribute("idcli", request.getParameter("id"));
+            acceso = edit;
+        } else if (accion.equalsIgnoreCase("Actualizar")) {
+            id = Integer.parseInt(request.getParameter("txtid"));
+            String nombre = request.getParameter("nombre");
+            String correo = request.getParameter("correo");
+            c.setId(id);
+            c.setNombre(nombre);
+            c.setCorreo(correo);
+            dao.edit(c);
+
+            acceso = listar;
+
         }
+
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
