@@ -23,8 +23,6 @@
                 <input type="email" class="form-control" name="correo" aria-describedby="emailHelp">
             </div>                
             <button type="submit" class="btn btn-primary" name="accion" value="Agregar">Ingresar</button>
-           
-
         </form>
     </body>
 </html>
