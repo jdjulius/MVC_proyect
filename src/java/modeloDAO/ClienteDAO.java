@@ -57,7 +57,16 @@ public class ClienteDAO implements crud {
 
     @Override
     public boolean add(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO cliente(nombre, correo) values ('" + c.getNombre() + "','" + c.getCorreo() + "');";
+         try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
     @Override

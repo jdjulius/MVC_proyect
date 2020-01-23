@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Cliente;
+import modeloDAO.ClienteDAO;
 
 /**
  *
@@ -23,6 +25,8 @@ public class controlador extends HttpServlet {
     String add = "vistas/add.jsp";
     String edit = "vistas/edit.jsp";
     
+    Cliente c = new Cliente();
+    ClienteDAO dao = new ClienteDAO();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,6 +73,18 @@ public class controlador extends HttpServlet {
         if (accion.equalsIgnoreCase("listar")) {
             acceso = listar;
             
+        }
+        else if (accion.equalsIgnoreCase("add")) {
+            acceso = add;
+        }
+        else if (accion.equalsIgnoreCase("Agregar")) {
+            String nombre = request.getParameter("nombre");
+            String correo = request.getParameter("correo");
+            c.setNombre(nombre);
+            c.setCorreo(correo);
+            dao.add(c);
+                    
+            acceso = listar;
         }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);

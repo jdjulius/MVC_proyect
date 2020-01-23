@@ -12,6 +12,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>ADD</h1>
+        <form id="datos" action="controlador">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp">
+            </div>                
+            <button type="submit" class="btn btn-primary" name="accion" value="Agregar">Ingresar</button>
+           
+
+        </form>
     </body>
 </html>
